@@ -221,7 +221,7 @@ class Thor
 
         arguments.each do |argument|
           next if argument.required?
-          fail ArgumentError, "You cannot have #{name.to_s.inspect} as required argument after " <<
+          fail ArgumentError, "You cannot have #{name.to_s.inspect} as required argument after "\
                                "the non-required argument #{argument.human_name.inspect}."
         end if required
 
@@ -476,7 +476,8 @@ class Thor
       alias_method :handle_no_task_error, :handle_no_command_error
 
       def handle_argument_error(command, error, args, arity) #:nodoc:
-        msg = "ERROR: \"#{basename} #{command.name}\" was called with "
+        msg = String.new("")
+        msg << "ERROR: \"#{basename} #{command.name}\" was called with "
         msg << "no arguments"               if     args.empty?
         msg << "arguments " << args.inspect unless args.empty?
         msg << "\nUsage: #{banner(command).inspect}"

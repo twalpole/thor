@@ -204,10 +204,11 @@ describe Thor::Actions do
 
   describe "#apply" do
     before do
-      @template = <<-TEMPLATE
-        @foo = "FOO"
-        say_status :cool, :padding
-      TEMPLATE
+      @template = String.new( <<-TEMPLATE
+          @foo = "FOO"
+          say_status :cool, :padding
+        TEMPLATE
+      )
       allow(@template).to receive(:read).and_return(@template)
 
       @file = "/"

@@ -305,7 +305,7 @@ class Thor
       with_output_buffer { block.call(*args) }
     end
 
-    def with_output_buffer(buf = "") #:nodoc:
+    def with_output_buffer(buf = String.new("")) #:nodoc:
       self.output_buffer, old_buffer = buf, output_buffer
       yield
       output_buffer
@@ -319,7 +319,7 @@ class Thor
       def set_eoutvar(compiler, eoutvar = '_erbout')
         compiler.put_cmd = "#{eoutvar}.concat"
         compiler.insert_cmd = "#{eoutvar}.concat"
-        compiler.pre_cmd = ["#{eoutvar} = ''"]
+        compiler.pre_cmd = ["#{eoutvar} = String.new('')"]
         compiler.post_cmd = [eoutvar]
       end
     end

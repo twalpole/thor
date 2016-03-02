@@ -394,8 +394,8 @@ class Thor # rubocop:disable ClassLength
       elsif all_commands[meth] || meth == "method_missing"
         true
       else
-        puts "[WARNING] Attempted to create command #{meth.inspect} without usage or description. " <<
-             "Call desc if you want this method to be available as command or declare it inside a " <<
+        puts "[WARNING] Attempted to create command #{meth.inspect} without usage or description. "\
+             "Call desc if you want this method to be available as command or declare it inside a "\
              "no_commands{} block. Invoked from #{caller[1].inspect}."
         false
       end

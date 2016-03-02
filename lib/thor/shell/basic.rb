@@ -106,7 +106,7 @@ class Thor
         status = status.to_s.rjust(12)
         status = set_color status, color, true if color
 
-        buffer = "#{status}#{spaces}#{message}"
+        buffer = String.new("#{status}#{spaces}#{message}")
         buffer << "\n" unless buffer.end_with?("\n")
 
         stdout.print(buffer)
@@ -160,7 +160,7 @@ class Thor
         formats, indent, colwidth = [], options[:indent].to_i, options[:colwidth]
         options[:truncate] = terminal_width if options[:truncate] == true
 
-        formats << "%-#{colwidth + 2}s" if colwidth
+        formats << String.new("%-#{colwidth + 2}s") if colwidth
         start = colwidth ? 1 : 0
 
         colcount = array.max { |a, b| a.size <=> b.size }.size
@@ -172,9 +172,9 @@ class Thor
           maximas << maxima
           if index == colcount - 1
             # Don't output 2 trailing spaces when printing the last column
-            formats << "%-s"
+            formats << String.new("%-s")
           else
-            formats << "%-#{maxima + 2}s"
+            formats << String.new("%-#{maxima + 2}s")
           end
         end
 
@@ -182,7 +182,7 @@ class Thor
         formats << "%s"
 
         array.each do |row|
-          sentence = ""
+          sentence = String.new("")
 
           row.each_with_index do |column, index|
             maxima = maximas[index]
@@ -405,7 +405,8 @@ class Thor
 
         return unless result
 
-        result.strip!
+        result = result.strip
+        # result.strip!
 
         if default && result == ""
           default

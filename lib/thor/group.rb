@@ -205,7 +205,8 @@ class Thor::Group # rubocop:disable ClassLength
     alias_method :printable_tasks, :printable_commands
 
     def handle_argument_error(command, error, args, arity) #:nodoc:
-      msg = "#{basename} #{command.name} takes #{arity} argument"
+      msg = String.new
+      msg << "#{basename} #{command.name} takes #{arity} argument"
       msg << "s" if arity > 1
       msg << ", but it should not."
       fail error, msg

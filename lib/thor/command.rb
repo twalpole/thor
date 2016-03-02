@@ -41,11 +41,11 @@ class Thor
     def formatted_usage(klass, namespace = true, subcommand = false)
       if namespace
         namespace = klass.namespace
-        formatted = "#{namespace.gsub(/^(default)/, '')}:"
+        formatted = String.new("#{namespace.gsub(/^(default)/, '')}:")
       end
-      formatted = "#{klass.namespace.split(':').last} " if subcommand
+      formatted = String.new("#{klass.namespace.split(':').last} ") if subcommand
 
-      formatted ||= ""
+      formatted ||= String.new("")
 
       # Add usage with required arguments
       formatted << if klass && !klass.arguments.empty?
